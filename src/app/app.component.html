@@ -1,14 +1,12 @@
-<h1 class='text-3xl text-blue-500 text-bold'>This is a main title!</h1>
-
-<h2 class="text-green-200 text-2xl">Hi</h2>
-
-<p-toast />
-
-<p-button (onClick)='clickMe()'>Click me!</p-button>
-
-<div>
-  <i class="pi pi-check"></i>
-  <i class="pi pi-times"></i>
-  <span class="pi pi-search"></span>
-  <span class="pi pi-user"></span>
+<div class="max-w-[600px] mx-auto">
+  <p-card>
+    <ng-template pTemplate='header'>
+      <h2 class='text-center'>Todo App!</h2>
+    </ng-template>
+    <app-create-todo></app-create-todo>
+    <h2>Some todos: #{{todoService.todoTasks().length}}</h2>
+    @for (todo of todoService.todoTasks(); track todo.name) {
+    <h4>Todo: {{todo.name}} :: {{todo.status}}</h4>
+    }
+  </p-card>
 </div>
