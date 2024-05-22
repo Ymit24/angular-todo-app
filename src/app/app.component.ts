@@ -6,11 +6,23 @@ import { MessageService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { TodoService } from './todo.service';
+import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
+import { DividerModule } from 'primeng/divider';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ButtonModule, ToastModule, CardModule, CreateTodoComponent],
+  imports: [
+    RouterOutlet,
+    ButtonModule,
+    ToastModule,
+    CardModule,
+    CreateTodoComponent,
+    TodoListItemComponent,
+    DividerModule,
+    TableModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [MessageService],
