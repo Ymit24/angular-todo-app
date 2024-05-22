@@ -6,6 +6,7 @@ import { Todo } from './todo';
 })
 export class TodoService {
   #todoTasks = signal<Todo[]>([{
+    id: "1",
     name: 'Some name'
   }]);
 
@@ -13,5 +14,11 @@ export class TodoService {
 
   addTodoTask(todo: Todo) {
     this.#todoTasks.update((tasks) => [...tasks, todo]);
+  }
+
+  deleteTodo(todo: Todo) {
+    this.#todoTasks.update((tasks) =>
+      tasks.filter((v) => v !== todo)
+    );
   }
 }

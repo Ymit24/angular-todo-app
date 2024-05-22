@@ -9,6 +9,7 @@ import { TodoService } from './todo.service';
 import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
 import { DividerModule } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
+import { Todo } from './todo';
 
 @Component({
   selector: 'app-root',
@@ -38,4 +39,10 @@ export class AppComponent {
       detail: 'Created the new task: ' + todo + '!'
     });
   }
+
+  completeTodo(todo: Todo) {
+    todo.status = 'complete';
+  }
+  editTodo(todo: Todo) { }
+  deleteTodo(todo: Todo) { }
 }

@@ -10,10 +10,13 @@ describe('TodoListItemComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TodoListItemComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(TodoListItemComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('todo', {
+      id: '1', name: 'demo'
+    });
     fixture.detectChanges();
   });
 

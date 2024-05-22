@@ -41,6 +41,7 @@ export class CreateTodoComponent {
       return;
     }
     this.todoService.addTodoTask({
+      id: '3',
       name: this.todoName || 'no-name'
     });
 
