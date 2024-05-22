@@ -1,10 +1,10 @@
 <div class="max-w-[600px] mx-auto">
   <p-card>
     <ng-template pTemplate='header'>
-      <h2 class='text-center'>Todo App!</h2>
+      <h1 class='text-center'>Todo App!</h1>
     </ng-template>
     <app-create-todo></app-create-todo>
-    <h2>You have {{todoService.todoTasks().length}} tasks for today!</h2>
+    <h3>You have {{todoService.todoTasks().length}} tasks for today!</h3>
 
     <p-divider />
     <p-table [value]="todoService.todoTasks()">
@@ -22,7 +22,8 @@
           <td>no description</td>
           <td>{{todo.status}}</td>
           <td>
-            <p-button pRipple icon='pi pi-trash' severity='danger' [rounded]='true' [outlined='true' />
+            <p-button class='mr-2' pRipple icon='pi pi-pencil' severity='success' [rounded]='true' [outlined]='true' />
+            <p-button pRipple icon='pi pi-trash' severity='danger' [rounded]='true' [outlined]='true' />
           </td>
         </tr>
       </ng-template>
