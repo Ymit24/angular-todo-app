@@ -1,24 +1,30 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Todo } from './todo';
+import { HttpClient } from '@angular/common/http';
+import { Observable, delay, distinctUntilChanged, tap } from 'rxjs';
+
+const API_URL = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  #todoTasks = signal<Todo[]>([{
-    id: "1",
-    name: 'Some name'
-  }]);
+  http = inject(HttpClient);
 
-  todoTasks = computed(this.#todoTasks);
-
-  addTodoTask(todo: Todo) {
-    this.#todoTasks.update((tasks) => [...tasks, todo]);
+  loadAll(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`${API_URL}/todo`).pipe(
+      tap((todos) => {
+        console.log('got todos:', todos);
+      }),
+    );
   }
 
-  deleteTodo(todo: Todo) {
-    this.#todoTasks.update((tasks) =>
-      tasks.filter((v) => v !== todo)
+  createTodo(todo: Todo): Observable<Todo> {
+    console.log('creating a new todo!');
+    return this.http.post<Todo>(`${API_URL}/todo`, todo).pipe(
+      tap((res) => {
+        console.log('finished creating the todo!', res);
+      }),
     );
   }
 }

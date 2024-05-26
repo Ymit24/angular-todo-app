@@ -8,6 +8,7 @@ import { TodoService } from '../todo.service';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { TodoStore } from '../todo.store';
 
 @Component({
   selector: 'app-create-todo',
@@ -27,9 +28,9 @@ import { ToastModule } from 'primeng/toast';
 })
 export class CreateTodoComponent {
   messageService = inject(MessageService);
-  todoService = inject(TodoService);
-
   todoName?: string;
+
+  todoStore = inject(TodoStore);
 
   createTodo() {
     if (!this.todoName) {
@@ -40,11 +41,7 @@ export class CreateTodoComponent {
       });
       return;
     }
-    this.todoService.addTodoTask({
-      id: '3',
-      name: this.todoName || 'no-name'
-    });
-
+    this.todoStore.createTodo({ name: this.todoName, status: 'active' });
     this.todoName = '';
   }
 }

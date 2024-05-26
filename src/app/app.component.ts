@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
@@ -6,10 +6,8 @@ import { MessageService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { TodoService } from './todo.service';
-import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
+import { TodoStore } from './todo.store';
 import { DividerModule } from 'primeng/divider';
-import { TableModule } from 'primeng/table';
-import { Todo } from './todo';
 
 @Component({
   selector: 'app-root',
@@ -20,9 +18,7 @@ import { Todo } from './todo';
     ToastModule,
     CardModule,
     CreateTodoComponent,
-    TodoListItemComponent,
-    DividerModule,
-    TableModule
+    DividerModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -30,19 +26,5 @@ import { Todo } from './todo';
 })
 export class AppComponent {
   messageService = inject(MessageService);
-  todoService = inject(TodoService);
-
-  onCreateTodo(todo: string) {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'New Task',
-      detail: 'Created the new task: ' + todo + '!'
-    });
-  }
-
-  completeTodo(todo: Todo) {
-    todo.status = 'complete';
-  }
-  editTodo(todo: Todo) { }
-  deleteTodo(todo: Todo) { }
+  todoStore = inject(TodoStore);
 }
