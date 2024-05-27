@@ -1,3 +1,24 @@
+<main>
+  <app-header-bar [showBackButton]='true'></app-header-bar>
+  @if (isDesktop$ | async) {
+  <div class="grid grid-cols-3">
+    <div>
+      <p class="text-center">left</p>
+    </div>
+    <div>
+      <p class="text-center">middle</p>
+      <router-outlet></router-outlet>
+    </div>
+    <div>
+      <p class="text-center">right</p>
+    </div>
+  </div>
+  } @else {
+  <router-outlet></router-outlet>
+  }
+</main>
+
+<!--
 <div class="max-w-[600px] mx-auto">
   <p-card>
     <ng-template pTemplate='header'>
@@ -14,3 +35,4 @@
     {{ todoStore.isLoading() }}
   </p-card>
 </div>
+-->
